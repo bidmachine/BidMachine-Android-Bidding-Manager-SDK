@@ -1,0 +1,11 @@
+include ":example"
+include ":core"
+
+file("adapters")
+        .listFiles()
+        .findAll { file ->
+            file.isDirectory() && !file.name.startsWith('_')
+        }
+        .forEach { folder ->
+            settings.include(":adapters:${folder.name}")
+        }

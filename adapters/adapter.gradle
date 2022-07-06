@@ -1,0 +1,61 @@
+apply from: "$rootProject.projectDir/config.gradle"
+
+ext {
+    adapterMinSdkVersion = 16
+    adapterNetworkVersionName = '1.0.0'
+    adapterVersionCode = 0
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk adapterMinSdkVersion
+        targetSdk 31
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+configurations {
+    adapterApi
+    api.extendsFrom adapterApi
+
+    adapterImplementation
+    implementation.extendsFrom adapterImplementation
+}
+
+dependencies {
+    compileOnly project(":core")
+}
+
+afterEvaluate {
+    String adapterVersionName = "$adapterNetworkVersionName.$adapterVersionCode"
+    android {
+        defaultConfig {
+            versionCode adapterVersionCode
+            versionName adapterVersionName
+
+            buildConfigField "String", "ADAPTER_NETWORK_VERSION_NAME", "\"${adapterNetworkVersionName}\""
+            buildConfigField "String", "ADAPTER_VERSION_NAME", "\"$adapterVersionName\""
+        }
+    }
+}
+
+apply from: "../publish.gradle"

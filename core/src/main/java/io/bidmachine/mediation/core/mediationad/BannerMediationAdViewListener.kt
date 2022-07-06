@@ -1,0 +1,3 @@
+package io.bidmachine.mediation.core.mediationad
+
+interface BannerMediationAdViewListener : ViewMediationAdListener<BannerMediationAdView>

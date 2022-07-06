@@ -1,0 +1,4 @@
+ext {
+    mediationVersionCode = 100000000
+    mediationVersionName = '1.0.0'
+}

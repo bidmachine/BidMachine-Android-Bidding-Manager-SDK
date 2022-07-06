@@ -1,0 +1,13 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "../adapter.gradle"
+
+adapterMinSdkVersion = 19
+adapterNetworkVersionName = '21.0.0'
+adapterVersionCode = 0
+
+dependencies {
+    adapterApi "com.google.android.gms:play-services-ads:$adapterNetworkVersionName"
+}

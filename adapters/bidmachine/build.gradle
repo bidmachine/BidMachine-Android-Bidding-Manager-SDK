@@ -1,0 +1,18 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: "../adapter.gradle"
+
+adapterNetworkVersionName = '1.9.5'
+adapterVersionCode = 0
+
+repositories {
+    maven {
+        url 'https://artifactory.bidmachine.io/bidmachine'
+    }
+}
+
+dependencies {
+    adapterApi "io.bidmachine:ads:$adapterNetworkVersionName"
+}
